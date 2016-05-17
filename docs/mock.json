@@ -65,7 +65,7 @@
               "read_more_url": "http:\/\/explore.dev1.justcoded.com\/en\/angelclub\/event\/view\/18"
           }],
           "stages": [],
-          "images": [],
+          "images": ["http://i.imgur.com/UePbdph.jpg"],
           "industries": [],
           "address": [{
               "city": "city 3",

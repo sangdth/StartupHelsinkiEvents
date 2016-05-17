@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Image,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -38,7 +39,7 @@ class StartupHelsinkiEvents extends Component {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.responses.["200"].items.items),
+          dataSource: this.state.dataSource.cloneWithRows(responseData.items.items),
           loaded: true,
         });
       })
@@ -51,11 +52,20 @@ class StartupHelsinkiEvents extends Component {
     }
 
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderEvent}
-        style={styles.listView}
-      />
+      <View style={styles.containerEventList}>
+        <View style={styles.navBar}>
+          <Text>Menu</Text>
+          <Text>All Events</Text>
+          <Text>Avatar</Text>
+        </View>
+        <View style={styles.eventList}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderEvent}
+            style={styles.listView}
+          />
+        </View>
+      </View>
     );
   }
 
@@ -71,30 +81,39 @@ class StartupHelsinkiEvents extends Component {
 
   renderEvent(event) {
     return (
-      <View style={styles.container}>
-
-        <View style={styles.rightContainer}>
-          <Text style={styles.title}>{event.event_name}</Text>
-          <Text style={styles.year}>{event.id}</Text>
-        </View>
-
+      <View style={styles.eventSummary}>
+        <Image
+          source={{uri: 'http://i.imgur.com/UePbdph.jpg'}}
+          style={styles.eventImage}
+        />
+        <Text style={styles.title}>{event.event_name}</Text>
+        <Text style={styles.year}>{event.id}</Text>
       </View>
     );
   }
 
-
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerEventList: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  rightContainer: {
-    flex: 1,
+  navBar: {
+    flex: 10,
+  },
+  eventList: {
+    flex: 90,
+  },
+  eventSummary: {
+    flex: 25,
+  },
+  eventImage: {
+    width: 53,
+    height: 81,
   },
   title: {
     fontSize: 20,
@@ -103,10 +122,6 @@ const styles = StyleSheet.create({
   },
   year: {
     textAlign: 'center',
-  },
-  thumbnail: {
-    width: 53,
-    height: 81,
   },
   listView: {
     paddingTop: 20,
