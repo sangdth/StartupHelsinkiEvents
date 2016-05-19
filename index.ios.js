@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 
-var MOCK_URL = "https://raw.githubusercontent.com/sangdth/StartupHelsinkiEvents/master/docs/mock.json";
+var MOCK_URL = "https://rawgit.com/sangdth/StartupHelsinkiEvents/master/docs/mock.json";
 
 class StartupHelsinkiEvents extends Component {
 
@@ -88,9 +88,14 @@ class StartupHelsinkiEvents extends Component {
   renderEvent(event) {
     return (
       <View style={styles.eventSummary}>
-        <Icon name="calendar" size={75} color="#333333" />
-        <Text style={styles.title}><Icon name="heart" color="#4F8EF7" /> {event.event_name}</Text>
-        <Text style={styles.year}>{event.id}</Text>
+        <View style={styles.leftSummary}>
+          <Icon name="calendar" size={55} color="#333333" />
+        </View>
+        <View style={styles.rightSummary}>
+          <Text style={styles.title}>{event.event_name}</Text>
+          <Text style={styles.year}>{event.created_at}</Text>
+        </View>
+
       </View>
     );
   }
@@ -126,27 +131,37 @@ const styles = StyleSheet.create({
       },
       navBarProfile: {
         width: 60,
-        alignItems: 'center',
+        textAlign: 'right',
         color: '#ffffff',
       },
     eventList: {
       flex: 9,
-      borderColor: '#939E00',
-      borderWidth: 2,
+      paddingLeft: 20,
+      paddingRight: 15,
     },
       eventSummary: {
-        flex: 25,
+        //flex: 20,
+        flexDirection: 'row',
         borderColor: '#0510B6',
         borderWidth: 2,
+        marginBottom: 10,
+      },
+      leftSummary: {
+        flex: 1,
+        borderWidth: 1,
+        borderColor: 'red',
+      },
+      rightSummary: {
+        flex: 4,
       },
       eventImage: {
         width: 53,
         height: 81,
       },
   title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: '700',
+    marginBottom: 5,
   },
   year: {
     textAlign: 'center',
