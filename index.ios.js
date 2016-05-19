@@ -10,11 +10,13 @@ import {
   AppRegistry,
   Image,
   StyleSheet,
+  StatusBar,
   Text,
   TouchableHighlight,
   ListView,
   View
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Octicons';
 
 var MOCK_URL = "https://raw.githubusercontent.com/sangdth/StartupHelsinkiEvents/master/docs/mock.json";
 
@@ -43,6 +45,7 @@ class StartupHelsinkiEvents extends Component {
           loaded: true,
         });
       })
+      //.catch() learn more about this.
       .done();
   }
 
@@ -53,10 +56,13 @@ class StartupHelsinkiEvents extends Component {
 
     return (
       <View style={styles.containerEventList}>
+        <StatusBar
+           barStyle="light-content"
+         />
         <View style={styles.navBar}>
-          <Text>Menu</Text>
-          <Text>All Events</Text>
-          <Text>Avatar</Text>
+          <Text style={styles.navBarMenu}><Icon name="three-bars" size={25} color="#ffffff" /></Text>
+          <Text style={styles.navBarTitle}>All Events</Text>
+          <Text style={styles.navBarProfile}>Sign In</Text>
         </View>
         <View style={styles.eventList}>
           <ListView
@@ -71,7 +77,7 @@ class StartupHelsinkiEvents extends Component {
 
   renderLoadingView() {
     return (
-      <View style={styles.container}>
+      <View style={styles.eventSummary}>
         <Text>
           Loading events...
         </Text>
@@ -82,11 +88,8 @@ class StartupHelsinkiEvents extends Component {
   renderEvent(event) {
     return (
       <View style={styles.eventSummary}>
-        <Image
-          source={{uri: 'http://i.imgur.com/UePbdph.jpg'}}
-          style={styles.eventImage}
-        />
-        <Text style={styles.title}>{event.event_name}</Text>
+        <Icon name="calendar" size={75} color="#333333" />
+        <Text style={styles.title}><Icon name="heart" color="#4F8EF7" /> {event.event_name}</Text>
         <Text style={styles.year}>{event.id}</Text>
       </View>
     );
@@ -97,24 +100,50 @@ class StartupHelsinkiEvents extends Component {
 const styles = StyleSheet.create({
   containerEventList: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'column',
+    alignItems: 'stretch',
   },
-  navBar: {
-    flex: 10,
-  },
-  eventList: {
-    flex: 90,
-  },
-  eventSummary: {
-    flex: 25,
-  },
-  eventImage: {
-    width: 53,
-    height: 81,
-  },
+    navBar: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingTop:30,
+      paddingBottom:10,
+      backgroundColor: '#3F848F',
+      paddingLeft: 20,
+      paddingRight: 20,
+    },
+      navBarMenu: {
+        width: 50,
+        justifyContent: 'center',
+      },
+      navBarTitle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#ffffff',
+        fontWeight: '700',
+        fontSize: 18,
+      },
+      navBarProfile: {
+        width: 60,
+        alignItems: 'center',
+        color: '#ffffff',
+      },
+    eventList: {
+      flex: 9,
+      borderColor: '#939E00',
+      borderWidth: 2,
+    },
+      eventSummary: {
+        flex: 25,
+        borderColor: '#0510B6',
+        borderWidth: 2,
+      },
+      eventImage: {
+        width: 53,
+        height: 81,
+      },
   title: {
     fontSize: 20,
     marginBottom: 8,
