@@ -1,7 +1,7 @@
 /**
  * Startup Helsinki Events
  * https://github.com/sangdth/StartupHelsinkiEvents
- * @flow
+ *
  */
 'use strict';
 
@@ -142,14 +142,14 @@ const styles = StyleSheet.create({
       eventSummary: {
         //flex: 20,
         flexDirection: 'row',
-        borderColor: '#0510B6',
-        borderWidth: 2,
+        // borderColor: '#0510B6',
+        // borderWidth: 2,
         marginBottom: 10,
       },
       leftSummary: {
         flex: 1,
-        borderWidth: 1,
-        borderColor: 'red',
+        // borderWidth: 1,
+        // borderColor: 'red',
       },
       rightSummary: {
         flex: 4,
@@ -159,12 +159,14 @@ const styles = StyleSheet.create({
         height: 81,
       },
   title: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
+    marginTop: 5,
     marginBottom: 5,
   },
   year: {
-    textAlign: 'center',
+    fontSize: 12,
+    //textAlign: 'center',
   },
   listView: {
     paddingTop: 20,
