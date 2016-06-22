@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   Image,
+  Navigator,
   StyleSheet,
   StatusBar,
   Text,
@@ -16,7 +17,18 @@ import {
   ListView,
   View
 } from 'react-native';
+
 import Icon from 'react-native-vector-icons/Octicons';
+
+var SingleEvent = require('./SingleEvent');
+var SplashPage = require('./SplashPage');
+var MainPage = require('./MainPage');
+
+var ROUTES = {
+    main_page: MainPage,
+    single_event: SingleEvent,
+    splash_page: SplashPage
+};
 
 var MOCK_URL = "https://rawgit.com/sangdth/StartupHelsinkiEvents/master/docs/mock.json";
 
@@ -75,6 +87,7 @@ class StartupHelsinkiEvents extends Component {
     );
   }
 
+  // Will replace this part with SplashPage
   renderLoadingView() {
     return (
       <View style={styles.eventSummary}>
@@ -85,6 +98,7 @@ class StartupHelsinkiEvents extends Component {
     );
   }
 
+  // Replace this single render with SingleEvent
   renderEvent(event) {
     return (
       <View style={styles.eventSummary}>
